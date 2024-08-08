@@ -11,7 +11,7 @@ const RoomDetails = () => {
   const axiosCommon = useAxiosCommon();
   const { id } = useParams();
 
-  const { data: room = {}, isLoading } = useQuery({
+  const { data: room = {}, isLoading, refetch } = useQuery({
     queryKey: ["room", id],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/room/${id}`);
@@ -61,6 +61,7 @@ const RoomDetails = () => {
                     height="30"
                     width="30"
                     alt="Avatar"
+                    referrerPolicy="no-referrer"
                     src={room?.host?.image}
                   />
                 </div>
@@ -92,7 +93,7 @@ const RoomDetails = () => {
 
             <div className="md:col-span-3 order-first md:order-last mb-10">
               {/* RoomReservation */}
-              <RoomReservation room={room} />
+              <RoomReservation room={room} refetch={refetch} />
             </div>
           </div>
         </div>
