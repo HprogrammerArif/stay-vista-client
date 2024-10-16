@@ -12,10 +12,11 @@ import GuestMenu from "./Menu/GuestMenu";
 import AdminMenu from "./Menu/AdminMenu";
 import ToggleBtn from "../../Shared/Button/ToggleBtn";
 
+
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(true);
   const [role, isLoading] = useRole();
   console.log(role, isLoading);
 
@@ -23,10 +24,10 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
-  const toggleHandler = event => {
+  const toggleHandler = (event) => {
     console.log(event.target.checked);
-    setToggle(event.target.checked)
-  }
+    setToggle(event.target.checked);
+  };
   return (
     <>
       {/* Small Screen Navbar */}
@@ -52,6 +53,7 @@ const Sidebar = () => {
           <AiOutlineBars className="h-5 w-5" />
         </button>
       </div>
+      
 
       {/* Sidebar */}
       <div
@@ -63,7 +65,7 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
               <Link to="/">
-                <img
+              <img
                   // className='hidden md:block'
                   src="https://i.ibb.co/4ZXzmq5/logo.png"
                   alt="logo"
@@ -78,7 +80,12 @@ const Sidebar = () => {
           <div className="flex flex-col justify-between flex-1 mt-6">
             {/* Conditional toggle button here.. */}
 
-            {role === 'host' && <ToggleBtn toggleHandler={toggleHandler} toggle={toggle}></ToggleBtn>}
+            {role === "host" && (
+              <ToggleBtn
+                toggleHandler={toggleHandler}
+                toggle={toggle}
+              ></ToggleBtn>
+            )}
 
             {/*  Menu Items */}
             <nav>
@@ -88,13 +95,17 @@ const Sidebar = () => {
                 address="/dashboard"
                 icon={BsGraphUp}
               ></MenuItem>
-              
 
-             {role === 'guest' && <GuestMenu></GuestMenu>}
-             {/* {role === 'host' && toggle? <HostMenu/>: <GuestMenu/>} */}
-             {role === 'host'? toggle? <HostMenu/>: <GuestMenu/>: undefined}
-             {role === 'admin' && <AdminMenu></AdminMenu>}
-              
+              {role === "guest" && <GuestMenu></GuestMenu>}
+              {/* {role === 'host' && toggle? <HostMenu/>: <GuestMenu/>} */}
+              {role === "host" ? (
+                toggle ? (
+                  <HostMenu />
+                ) : (
+                  <GuestMenu />
+                )
+              ) : undefined}
+              {role === "admin" && <AdminMenu></AdminMenu>}
             </nav>
           </div>
         </div>
@@ -104,11 +115,11 @@ const Sidebar = () => {
 
           {/* Profile Menu */}
           <MenuItem
-                label="Profile"
-                address="/dashboard/profile"
-                icon={FcSettings}
-              ></MenuItem>
-          
+            label="Profile"
+            address="/dashboard/profile"
+            icon={FcSettings}
+          ></MenuItem>
+
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

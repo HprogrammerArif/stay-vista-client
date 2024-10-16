@@ -113,6 +113,7 @@ const AddRoomForm = ({
                 {imagePreview && <img src={imagePreview}></img>}
               </div>
             </div>
+
             <div className="flex justify-between gap-2">
               <div className="space-y-1 text-sm">
                 <label htmlFor="price" className="block text-gray-600">

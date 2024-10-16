@@ -30,7 +30,7 @@ const GuestMenu = () => {
         status: "Requested",
       };
       const { data } = await axiosSecure.put(`/user`, currentUser);
-      console.log(data);
+      //console.log(data);
 
       if (data.modifiedCount > 0) {
         toast.success("Success! Please wait for admin confirmation..");

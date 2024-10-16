@@ -29,7 +29,7 @@ const CheckoutForm = ({ closeModal, bookingInfo, refetch }) => {
   //get client secret
   const getClientSecret = async (price) => {
     const { data } = await axiosSecure.post("/create-payment-intent", price);
-    console.log("client secret from server", data);
+    //console.log("client secret from server", data);
     setClientSecret(data.clientSecret);
   };
 
